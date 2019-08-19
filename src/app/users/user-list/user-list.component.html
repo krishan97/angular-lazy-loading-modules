@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Name</th>
+              <th scope="col">User Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let x of users">
+              <th scope="row">{{ x.id}}</th>
+              <td>{{ x.name}}</td>
+              <td>{{ x.username}}</td>
+              <td>{{ x.email}}</td>
+              <td><button class="btn btn-primary" (click)="open(content,x)">View</button></td>
+            </tr>
+
+          </tbody>
+        </table>
+  </div>
+
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">User Detail Form</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" *ngIf="selectedUser!==undefined">
+    <form>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" name="name" id="name" [(ngModel)]="selectedUser.name" >
+      </div>
+      <div class="form-group">
+        <label for="username">User Name:</label>
+        <input type="text" class="form-control" name="username"  id="username"  [(ngModel)]="selectedUser.username">
+      </div>
+      <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" name="email"  id="email" [(ngModel)]="selectedUser.email">
+      </div>
+      <div class="form-group">
+        <label for="street">Street:</label>
+        <input type="text" class="form-control" name="street" id="street" [(ngModel)]="selectedUser.address.street">
+      </div>
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" class="form-control" name="city" id="city" [(ngModel)]="selectedUser.address.city">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="text" class="form-control" name="phone"  id="phone"  [(ngModel)]="selectedUser.phone">
+      </div>
+      <div class="form-group">
+        <label for="website">Website:</label>
+        <input type="text" class="form-control" name="website"  id="website"  [(ngModel)]="selectedUser.website">
+      </div>
+    </form>
+  </div>
+</ng-template>
